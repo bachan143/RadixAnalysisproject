@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>This is home page</title>
+</head>
+<body>
+	<section>
+		<div class="card mr-3 ml-3">
+			<div class="card-body">
+				<h1 class="text-center">Show Events</h1>
+				
+				<table id="myTable"  class="table">
+					<thead>
+						<tr>
+							
+							<th scope="col">Name</th>
+							<th scope="col">Start Date</th>
+							<th scope="col">End Date</th>
+							<th scope="col">Start Time</th>
+							<th scope="col">End Time</th>
+							<th scope="col">DOW</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>  
+						<tr th:each="c:${events}">
+							
+							<td><span th:text="${c.eventName}"></span></td>
+							
+							<td><span th:text="${c.startDate}"></span> </td>
+							<td><span th:text="${c.endDate}"></span></td>
+							<td><span th:text="${c.startTime}"></span></td>
+							<td><span th:text="${c.endTime}"></span></td>
+							<td><span th:text="${c.DOW}"></span></td>
+							<td ><a th:href="@{'/user/delete/'+${c.eventId}}" class="btn btn-danger btn-sm">Delete</a></td>
+						</tr>
+					</tbody>
+				</table>
+				
+
+			</div>
+
+
+		</div>
+		 <script>
+          $(document).ready(()=>{
+        	  $('.item').removeClass("active");
+        	  $('#contacts_link').addClass("active");
+        	 
+        	   $('#myTable').DataTable();
+        	
+        	  
+          });
+           
+        </script>
+	</section>
+
+
+</body>
+</html>
